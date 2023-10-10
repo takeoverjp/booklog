@@ -382,3 +382,18 @@ C(N) = N/(1 + α(N-1) + βN(N-1))
 
 - `systemd-analyze(1)`コマンドで、ブート時間を確認できる
 - `systemd-analyze critical-chain`によって、起動のレイテンシの原因となったサービスの内訳を確認することができる
+
+### 3.4.4 拡張BPF
+
+- BPFはカーネルモードで実行される仮想マシン
+- ソケットイベント、トレースポイント、USDT(User Statically-Defined Tracking)プローブ、kprobe, uprobe, perf_eventなどのイベントが発生したときに実行される
+- BPFバイトコードは、カーネルをクラッシュさせたり壊したりしない安全性を持つことを確認する検証器のチェックをパスしなければならない
+
+## 3.5 その他の項目
+
+### 3.5.1 PGOカーネル
+
+- PGO (Profile-guided optimization)とは、CPUプロファイルを使って、コンパイラの最適化を向上する技術のこと
+- 一度本番稼働中にCPUプロファイルをとり、その結果に基づいて再コンパイルすることで、実ユースケースにおいてパフォーマンスを向上することができる
+- GCC, Clang, Linux kernelはPGOをサポートしている
+- 別名FDO (Feedback-directed optimization)
