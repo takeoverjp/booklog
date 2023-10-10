@@ -377,3 +377,8 @@ C(N) = N/(1 + α(N-1) + βN(N-1))
   - ftraceのirqsoffトレーサなどで分析できる
 - 優先度の高いイベントは、マスク不能割り込み(NMI, Non-Maskable Interrupt)にすることができる
   - 例えば、ウォッチドック検出用の割り込みなど
+
+### 3.4.2 systemd
+
+- `systemd-analyze(1)`コマンドで、ブート時間を確認できる
+- `systemd-analyze critical-chain`によって、起動のレイテンシの原因となったサービスの内訳を確認することができる
