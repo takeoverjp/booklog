@@ -397,3 +397,8 @@ C(N) = N/(1 + α(N-1) + βN(N-1))
 - 一度本番稼働中にCPUプロファイルをとり、その結果に基づいて再コンパイルすることで、実ユースケースにおいてパフォーマンスを向上することができる
 - GCC, Clang, Linux kernelはPGOをサポートしている
 - 別名FDO (Feedback-directed optimization)
+
+# 4. 可観測性ツール
+- ![一覧](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQicFPsx1gRi85rof0-DEYZdNCFv8p_4iw2tw&usqp=CAU)
+- sarはSystem Activity Reporterの頭文字
+- 
