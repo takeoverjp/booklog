@@ -199,3 +199,15 @@ https://www.oreilly.co.jp/books/9784814400454/
 
 - Strategyパターン、Commandパターンを実装する際、`std::function`を使うことで処理を参照渡しではなく値渡しできるようになり、柔軟性とよみやすさが向上する
 - `std::function`には性能上の短所があることを考慮する
+
+# 6. Adapterパターン、Observerパターン、CRTPパターン
+
+## ガイドライン２４：インタフェースを統一するにはAdapterパターン
+
+- Adapterパターンは、互換性を持たない部品を一緒に動作させるためにインターフェースを変換する
+- オブジェクトAdapterとクラスAdapterではオブジェクトAdapter（コンポジション）を優先する
+- フリー関数に対しては、関数Adapterを使う（例：`std::begin`, `std::end`）
+  - ADL ([実引数依存の名前探索](https://ja.wikipedia.org/wiki/%E5%AE%9F%E5%BC%95%E6%95%B0%E4%BE%9D%E5%AD%98%E3%81%AE%E5%90%8D%E5%89%8D%E6%8E%A2%E7%B4%A2))を使ったテクニック
+- Adapterパターンは容易に実装を追加できるので、追加するときに期待される動作をよく検討し、LSPから逸脱していないかをよく確認しなければならない
+
+
