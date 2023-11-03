@@ -3,6 +3,7 @@
 https://www.oreilly.co.jp/books/9784814400454/
 
 - [C++略語集](https://quuxplusone.github.io/blog/2019/08/02/the-tough-guide-to-cpp-acronyms/)
+- [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#main)
 
 # 1. ソフトウェア設計の技
 ## ガイドライン１：ソフトウェア設計の重要性を理解する
@@ -241,3 +242,11 @@ https://www.oreilly.co.jp/books/9784814400454/
 
 - 処理を注入するmixin基底クラスを実装するときには、CRTPパターンが使える
 - mixinのケースでは、CRTP基底クラスをprivateに継承する
+
+# 7. Bridgeパターン、Prototypeパターン、External Polymorphismパターン
+
+## ガイドライン２８：物理的依存関係を排除するにはBridgeパターン
+
+- Bridgeパターンはメンバ変数などの実装詳細を依存先から隠蔽するためのパターン
+- pimlイディオムは、ローカルで多態性を持たない形のBridgeパターン
+- `pimpl_`メンバ変数を`std::unique_ptr`にしても、デストラクタでは手動でのメモリ解放が必要
