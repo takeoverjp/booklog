@@ -5,6 +5,14 @@ https://www.oreilly.co.jp/books/9784814400454/
 - [C++略語集](https://quuxplusone.github.io/blog/2019/08/02/the-tough-guide-to-cpp-acronyms/)
 - [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#main)
 
+# 設計ガイドライン
+
+- 依存関係を最小化せよ
+- 関心を分離せよ
+- 継承よりコンポジションを優先せよ
+- 既存コードに干渉しない解を優先せよ
+- 参照セマンティクスより値セマンティクスを優先せよ
+
 # 1. ソフトウェア設計の技
 ## ガイドライン１：ソフトウェア設計の重要性を理解する
 
