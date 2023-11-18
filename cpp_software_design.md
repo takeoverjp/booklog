@@ -4,6 +4,7 @@ https://www.oreilly.co.jp/books/9784814400454/
 
 - [C++略語集](https://quuxplusone.github.io/blog/2019/08/02/the-tough-guide-to-cpp-acronyms/)
 - [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#main)
+- [サンプルソースコード](https://github.com/igl42/cpp_software_design/tree/main)
 
 # 設計ガイドライン
 
