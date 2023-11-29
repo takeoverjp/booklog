@@ -57,3 +57,5 @@ Rustでのアトミック操作プリミティブについての解説。
 - スピンループヒント(`std::hint::spin_loop()`)を呼び出すことで、プロセッサに対して、何かが変わるのをスピンして待っていることをプロセッサに伝えることができる。
 - ロックを共有しつつ、保護対象の変更可能なデータを一緒に保持するためには、`UnsafeCell`で内部可変性を用いる必要がある。
 - ロックガードは、ロック状態にあるロックへの安全なアクセスを表現する特別な型を用いた、デザインパターン。
+  - [`std::lock_guard` (C++)](https://cpprefjp.github.io/reference/mutex/lock_guard.html)
+  - [Scoped Locking Pattern](https://www.dre.vanderbilt.edu/~schmidt/PDF/ScopedLocking.pdf)
