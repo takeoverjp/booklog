@@ -59,3 +59,10 @@ Rustでのアトミック操作プリミティブについての解説。
 - ロックガードは、ロック状態にあるロックへの安全なアクセスを表現する特別な型を用いた、デザインパターン。
   - [`std::lock_guard` (C++)](https://cpprefjp.github.io/reference/mutex/lock_guard.html)
   - [Scoped Locking Pattern](https://www.dre.vanderbilt.edu/~schmidt/PDF/ScopedLocking.pdf)
+
+# 5. チャネルの実装
+
+いくつかのスレッド間通信チャネルを実装してみる。
+
+- 単純にMutexをとって、queueに追加、取り出しを行うことで、多対多の通信チャネルを実装できる。
+  - ただし、広くロックをとるため性能上不利であること、チャネルに無制限に追加できてしまう、といった課題がある。
