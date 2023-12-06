@@ -21,3 +21,10 @@ https://www.oreilly.co.jp/books/9784814400485/
 
 - CDPATHでcdの検索パスを設定できる
 - dirsでディレクトリスタックの内容を確認できる
+
+# 5. ツールボックスの拡張
+
+date, seq, shellのブレース展開, find yes, grep, tail, awk, tac, paste, diff, tr, rev, sedの紹介
+
+- grep -wで単語マッチ
+- man -kでmanの検索
