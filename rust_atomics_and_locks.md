@@ -70,3 +70,8 @@ Rustでのアトミック操作プリミティブについての解説。
 - ワンショットチャネル
   - `std::mem::MaybeUninit<T>`は、`Option<T>`の、ユーザが手動で初期化済みかどうかを判定しなければならないunsafeバージョン
   - 別途データの有無を`AtomicBool`に持っている場合は、`std::mem::MaybeUninit<T>`を使うことでメモリの浪費を避けることができる
+  - 以下の実行時チェックを追加することで、安全なワンショットチャネルにできる
+    - メッセージがない状態(=`ready=false`)で`receive`を呼び出したら`panic!`
+    - メッセージをすでに読み込んでいる状態(=`ready=false`)で`receive`を呼び出したら`panic!`
+    - メッセージをすでに送り始めている状態(=`in_use=true`)で`send`を呼び出したら`panic!`
+    - メッセージはあるが、まだ読まれていない状態でchannelがdropしたら、messageもdropする
