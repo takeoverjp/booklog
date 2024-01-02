@@ -87,6 +87,20 @@ b.trace_print()
 
 # 4. bpf()システムコール
 
+- eBPプログラムは、`bpf`システムコールでプログラムのロード、Mapの作成・アクセスなどを行う
+- `bpf`システムコールは`ioctl`のようにコマンドとattributeを渡す汎用的なインターフェースになっている
+  - `BPF_BTF_LOAD`
+    - Kernelのバージョン差分を吸収するため、BTF(BPF Type Format)をロードする
+  - `BPF_MAP_CREATE`
+    - ユーザ空間とカーネル空間の間でデータのやり取りをするためのMapを作成する
+  - `BPF_PROG_LOAD`
+    - eBPFプログラムをカーネルにロードする
+  - `BPF_PROG_BIND_MAP`
+    - mapはプログラムのfdに紐づく形で参照カウントを管理しており、参照するfdがなくなったら解放される
+    - 明示的に参照カウントを増やし、ピン留めする場合に、`PERF_EVENT_IOC_SET_BPF`を使う
+- `perf_event_open`でkprobeタイプのperfイベントを取得する
+- `ioctl`の`PERF_EVENT_IOC_SET_BPF`を実行することで、BPFプログラムをkprobeイベントにアタッチする
+
 # 5. CO-RE, BTF, libbpf
 
 # 6. eBPF検証器
