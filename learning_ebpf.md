@@ -1,7 +1,12 @@
 # links
 
-- https://www.oreilly.co.jp/books/9784814400560/
-- https://github.com/lizrice/learning-ebpf.git
+- [入門eBPF](https://www.oreilly.co.jp/books/9784814400560/)
+- [入門eBPFのソースコード](https://github.com/lizrice/learning-ebpf.git)
+- libbpf
+  - [BCCベースのeBPFコードをlibbpfに移植する方法](https://nakryiko.com/posts/bcc-to-libbpf-howto-guide/#bpf-code-conversion)
+  - [libbpf-bootstrap](https://github.com/libbpf/libbpf-bootstrap)
+  - [libbpfのBCC版をlibbpf版に書き換えたもの](https://github.com/iovisor/bcc/tree/master/libbpf-tools)
+
 
 # 1. eBPFとは何か？なぜ、重要なのか？
 
@@ -80,7 +85,8 @@ b.trace_print()
 # 3. eBPFプログラムの仕組み
 
 - C/Rustで描いたeBPFプログラムを、事前にeBPFバイトコードにコンパイルし、実行時にeBPF仮想マシンにて機械語にJITコンパイルもしくはinterpretされる
-- eBPFバイトコードはCPUアーキテクチャに依存しない
+- eBPFバイトコード自体はCPUアーキテクチャに依存しない
+  - しかし、kprobeで使うpt_regs構造体がCPUアーキテクチャに依存するため、結局CPUアーキテクチャごとにコンパイルは必要
 - clangのtargetをbpfとすることでeBPFバイトコードを出力することができる
 - `bpftool`コマンドを使うことで、eBPFプログラムをロードし、フック対象のイベントにアタッチすることができる
 - `ip`コマンドでもbpfプログラムのアタッチ・デタッチができる
@@ -105,6 +111,8 @@ b.trace_print()
 
 - CO-RE (Compile Once, Run Everywhere)とは、一度コンパイルすればどこでも実行可能というアプローチのこと
   - カーネルのデータ構造の情報をBTFとしてプログラムに含め、実行環境と異なる場合調整する
+  - **１つのアーキテクチャについて** 一度コンパイルすればどこでも実行できる
+    - kprobeイベントにアタッチする場合、cpuアーキ依存のpt_regs構造体に依存するため、それぞれのCPUアーキごとにコンパイルが必要
 
 - BCCの問題点
   - 実行環境にコンパイルツールチェーンとカーネルヘッダが必要
@@ -124,6 +132,24 @@ b.trace_print()
     - Goの場合Cilium eBPFを、Rustの場合Ayaを使う
   - BPFスケルトン
     - ユーザ空間のコードのテンプレートをコンパイル済みのBPFオブジェクトから(!)生成できる
+
+- BTF
+  - `bpftool btf list`で、カーネルにロードされているBTF情報を見ることができる
+  - `bpftool btf dump id <id>`で、特定のBTFの詳細情報を見ることができる
+  - `bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h`で、すべての定義を含むヘッダを生成できる
+    - v5.4から利用可能
+    - ただし、使えない環境でも自分で必要なBTFファイルを生成しておけば実行できる可能性がある
+
+- CO-RE eBPFプログラム (kernel側)
+  - カーネルヘッダは、生成した`vmlinux.h`か、ここのヘッダファイルを指定するか、自分で定義するか
+  - libbpfリポジトリをサブモジュールとして含めることが、書籍執筆時点では一般的
+  - CO-REを用いたメモリアクセスには、`bpf_probe_read_*()`を使わなければならない
+    - これにより、BTF情報を使ってレイアウトの差分を吸収できる
+    - `BPF_CORE_READ`を使うことで簡単にかけるようになる
+  - コンパイルしたELFファイルには、BTF専用のセクションが追加される
+
+- ユーザ空間libbpfライブラリ
+  - コンパイル時にclangが生成するBPF CO-RE再配置情報を使って、eBPFプログラムの内容を実行時に変更し、ターケットマシン上のカーネルで動作できるようにする
 
 # 6. eBPF検証器
 
