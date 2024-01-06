@@ -184,7 +184,47 @@ b.trace_print()
 
 # 7. eBPFのプログラムとアタッチメントタイプ
 
-- ヘルパ関数はUAPIの一部であり、カーネル外部向けの安定した互換性が保証されるインタフェースである
+- eBPFプログラムのタイプにより決まるもの
+  - アタッチできるイベント種別
+  - eBPFプログラムが受け取るコンテキスト情報の型
+  - eBPFプログラムから使えるカーネル関数群
+
+- eBPFプログラムから使えるカーネル関数の種別
+  - ヘルパ関数
+    - カーネル外部向けのインタフェースであり、互換性が保証される
+  - BPFカーネル関数（Kfuncs）
+    - 互換性が保証されない（カーネルバージョンが変わると動かない可能性がある）
+    - [「core」BPF kfuncs](https://docs.kernel.org/bpf/kfuncs.html#core-kfuncs)
+
+- eBPFのプログラムタイプ
+  - トレーシングプログラムタイプ（Perfプログラムタイプ）
+    - イベントの情報をトレースして、効率よくユーザ空間に報告する
+    - kprobe / kretprobe
+      - カーネル関数の開始と終了をトレースする
+      - オフセットを指定することもできる
+      - カーネル関数がインライン化された場合はアタッチできない
+    - fentry / fexit
+      - kprobe / kretprobeより効果的にカーネル関数の開始と終了をトレースする
+      - fexitフックで呼び出された時点の引数の情報も取得できる(kretprobeでは取得できない)
+      - x86-64ではv5.5でサポート
+      - arm64はv6.0時点で未サポート
+    - [Tracepoint](https://www.kernel.org/doc/html/v6.0/trace/events.html)
+      - カーネルコード内でトレース用にマークされたポイント
+      - eBPF固有ではなく、SystemTapなどでも使われてきた
+      - `/sys/kernel/tracing/available_events`で利用可能なtracepointが確認できる
+      - BTFが使えない環境
+        - `/sys/kernel/tracing/events/トレースするサブシステム名/tracepointの名前/format`からコンテキスト引数の型を自分で定義する
+        - カーネルのバージョンが変わり、型定義が変わると動作しなくなる
+      - BTFが使える環境での Tracepoint
+        - `vmlinux.h`に定義されている`struct trace_event_raw_(tracepointの名前)`を使う
+    - uprobe / uretprobe
+      - ユーザ空間の関数と解と終了をトレースする
+      - トレース対象の関数シンボルを定義している共有ライブラルのフルパスが必要など、制約がある
+      - 使用例
+        - [`bashreadline`](https://github.com/iovisor/bcc/blob/master/libbpf-tools/bashreadline.bpf.c)
+        - [funclatency tools](https://github.com/iovisor/bcc/blob/master/libbpf-tools/funclatency.c)
+        - [BCCのUSDTのサンプル](https://github.com/iovisor/bcc/blob/master/examples/usdt_sample/usdt_sample.md)
+  - ネットワーク関連プログラムタイプ
 
 # 8. ネットワーク用eBPF
 
