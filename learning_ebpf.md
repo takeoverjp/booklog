@@ -196,10 +196,10 @@ b.trace_print()
     - 互換性が保証されない（カーネルバージョンが変わると動かない可能性がある）
     - [「core」BPF kfuncs](https://docs.kernel.org/bpf/kfuncs.html#core-kfuncs)
 
-- eBPFのプログラムタイプ
+- eBPFのプログラムタイプ (`BPF_PROG_TYPE_*`)
   - トレーシングプログラムタイプ（Perfプログラムタイプ）
     - イベントの情報をトレースして、効率よくユーザ空間に報告する
-    - kprobe / kretprobe
+    - kprobe / kretprobe (`BPF_PROG_TYPE_KPROBE`)
       - カーネル関数の開始と終了をトレースする
       - オフセットを指定することもできる
       - カーネル関数がインライン化された場合はアタッチできない
@@ -208,7 +208,7 @@ b.trace_print()
       - fexitフックで呼び出された時点の引数の情報も取得できる(kretprobeでは取得できない)
       - x86-64ではv5.5でサポート
       - arm64はv6.0時点で未サポート
-    - [Tracepoint](https://www.kernel.org/doc/html/v6.0/trace/events.html)
+    - [Tracepoint](https://www.kernel.org/doc/html/v6.0/trace/events.html) (`BPF_PROG_TYPE_TRACEPOINT`, `BPF_PROG_TYPE_RAW_TRACEPOINT`)
       - カーネルコード内でトレース用にマークされたポイント
       - eBPF固有ではなく、SystemTapなどでも使われてきた
       - `/sys/kernel/tracing/available_events`で利用可能なtracepointが確認できる
@@ -217,14 +217,27 @@ b.trace_print()
         - カーネルのバージョンが変わり、型定義が変わると動作しなくなる
       - BTFが使える環境での Tracepoint
         - `vmlinux.h`に定義されている`struct trace_event_raw_(tracepointの名前)`を使う
-    - uprobe / uretprobe
+    - uprobe / uretprobe (`BPF_PROG_TYPE_KPROBE`)
       - ユーザ空間の関数と解と終了をトレースする
       - トレース対象の関数シンボルを定義している共有ライブラルのフルパスが必要など、制約がある
       - 使用例
         - [`bashreadline`](https://github.com/iovisor/bcc/blob/master/libbpf-tools/bashreadline.bpf.c)
         - [funclatency tools](https://github.com/iovisor/bcc/blob/master/libbpf-tools/funclatency.c)
         - [BCCのUSDTのサンプル](https://github.com/iovisor/bcc/blob/master/examples/usdt_sample/usdt_sample.md)
+    - LSM (Linux Security Module, `BPF_PROG_TYPE_LSM`)
+      - カーネル内の安定したセキュリティインタフェースにアタッチする
+      - 他のperf関連のプログラムタイプと異なり、非ゼロを返すことで、カーネルのふるまいを変える（失敗させる）ことができる
   - ネットワーク関連プログラムタイプ
+    - アタッチしたいネットワークレイヤごとに、BPFプログラムタイプが異なる
+    - ネットワーク関連のプログラムタイプは、トレーシング関連のプログラムタイプと違い、以下の制御ができる
+      - 戻り値により、パケットをどう処理すべきかを制御できる
+        - 通常の処理をする、ドロップする、リダイレクトする、など
+      - パケット、ソケットの設定を変更することができる
+
+- eBPFのアタッチメントタイプ
+  - プログラムタイプごとに、使えるアタッチメントタイプが決まっている
+    - 具体的になにが使えるかは、`bpf_prog_load_check_attach`関数の実装を見ればわかる
+  - アタッチメントタイプによって、使えるヘルパ関数が決まる
 
 # 8. ネットワーク用eBPF
 
