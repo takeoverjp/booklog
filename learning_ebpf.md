@@ -7,6 +7,9 @@
   - [libbpf-bootstrap](https://github.com/libbpf/libbpf-bootstrap)
   - [libbpfのBCC版をlibbpf版に書き換えたもの](https://github.com/iovisor/bcc/tree/master/libbpf-tools)
 
+- bpftrace
+  - [チュートリアル](https://github.com/iovisor/bpftrace/blob/master/docs/tutorial_one_liners.md)
+  - [チートシート](https://www.brendangregg.com/BPF/bpftrace-cheat-sheet.html)
 
 # 1. eBPFとは何か？なぜ、重要なのか？
 
@@ -298,5 +301,12 @@ b.trace_print()
   - `bpf_send_signal`というv5.3で追加されたヘルパ関数を使うことで、eBPFプログラムから同期的に悪意のあるプロセスを停止することができる
 
 # 10. プログラミングeBPF
+
+- eBPFプログラミングは下記の２つの部分からなる
+  - カーネル空間部
+  - ユーザ空間部
+
+- `bpftrace`
+  - カーネル空間部とユーザ空間部を意識せずに実装できる
 
 # 11. eBPFの将来の進化
