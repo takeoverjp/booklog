@@ -11,6 +11,9 @@
   - [チュートリアル](https://github.com/iovisor/bpftrace/blob/master/docs/tutorial_one_liners.md)
   - [チートシート](https://www.brendangregg.com/BPF/bpftrace-cheat-sheet.html)
 
+- libxdp
+  - [libxdp-tutorial](https://github.com/xdp-project/xdp-tutorial)
+
 # 1. eBPFとは何か？なぜ、重要なのか？
 
 - eBPFの主な用途
@@ -310,5 +313,14 @@ b.trace_print()
   - カーネル空間部とユーザ空間部を意識せずに実装できる
 
 - BCCを使うことで、Python, Lua, C++で楽にeBPFプログラミングできるが、ツールとともにコンパイラも配布しなければならないという欠点もある
+
+- C言語
+  - COREとlibbpfを使うことで、BCCバージョンと比較して次のメリットがある
+    - コンパイラを同梱しなくて良い
+    - メモリ使用量が少ない
+    - 起動が高速
+  - C言語に抵抗がなければlibbpfを使うほうが良い
+  - `libxdp`
+    - libbpfの上に書かれたXDPプログラムのヘルパライブラリ
 
 # 11. eBPFの将来の進化
