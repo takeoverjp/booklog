@@ -11,6 +11,9 @@
   - [チュートリアル](https://github.com/iovisor/bpftrace/blob/master/docs/tutorial_one_liners.md)
   - [チートシート](https://www.brendangregg.com/BPF/bpftrace-cheat-sheet.html)
 
+- Aya
+  - [Aya book](https://aya-rs.dev/book)
+
 - libxdp
   - [libxdp-tutorial](https://github.com/xdp-project/xdp-tutorial)
 
@@ -332,5 +335,20 @@ b.trace_print()
     - `libbpfgo`
       - go nativeな機能(非同期channel通信など)との親和性が高く設計されている
       - Cとgoの間のデータのやり取りにおいて性能課題がある
+
+- Rust
+  - RustのコードをeBPFバイトコードにコンパイルできるので、ライブラリによってはユーザ空間とカーネル空間両方Rustで書ける
+  - `libbpf-rs`
+    - `libbpf`のRustラッパー
+    - カーネル側はC言語
+  - `Redbpf`
+    - `libbpf`のRustラッパー
+    - カーネル側もRustで書けるが、`rustc`対応前に開発されたためLLVM中間表現を経由する
+    - ebpf.ioでは`Aya`が新進、`Redbpf`がメジャーとされている
+  - `Aya`
+    - `libbpf`に依存しない（`bpf`システムコール呼び出しから実装している）
+    - カーネル側もRustで書ける
+  - `Rust-bcc`
+    - BCCのPythonバインディングを模したRustバインディング
 
 # 11. eBPFの将来の進化
