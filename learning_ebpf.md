@@ -352,3 +352,13 @@ b.trace_print()
     - BCCのPythonバインディングを模したRustバインディング
 
 # 11. eBPFの将来の進化
+
+# libbpf-bootstrap Trial
+
+```
+git clone --recursive https://github.com/libbpf/libbpf-bootstrap.git
+cd libbpf-bootstrap/examples/c
+make minimal
+sudo ./minimal
+sudo cat /sys/kernel/debug/tracing/trace_pipe
+```
