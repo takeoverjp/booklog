@@ -351,6 +351,12 @@ b.trace_print()
   - `Rust-bcc`
     - BCCのPythonバインディングを模したRustバインディング
 
+- BPFプログラムをテストするために、ユーザ空間で実行するコマンド`BPF_PROG_RUN`が用意されている
+  - ただし、ネットワーク関係の一部のプログラムタイプのみサポートされている
+
+- BPFプログラムにかかるオーバーヘッドの測定には、`bpf_stats_enabled`が使える
+  - `sysctl -w kernel.bpf_stats_enabled=1`
+
 # 11. eBPFの将来の進化
 
 # libbpf-bootstrap Trial
