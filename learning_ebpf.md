@@ -359,6 +359,14 @@ b.trace_print()
 
 # 11. eBPFの将来の進化
 
+- WindowsもeBPFをサポートしている
+  - eBPFプログラムはLinux Kernelで動作するが、Linux Kernel内のVMで実行されるので、Windowsも同じVMを動かすことでサポートできる
+
+- eBPFプログラムの署名
+  - BTFデータに基づき動的にプログラムを変更しているので、カーネルで署名検証することは簡単ではない
+- カーネルのポインタの保持
+- メモリ割り当て
+
 # libbpf-bootstrap Trial
 
 ```
