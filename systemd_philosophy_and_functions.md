@@ -19,3 +19,15 @@
 - systemd-analyze verifyでunitファイルを検証できる
 
 # 3. unitの状態、unit間の依存関係、target unit
+
+- unitの状態
+  - 基本はinactiveとactive
+  - 起動に失敗したらfailed
+<img width="400" alt="image" src="https://github.com/takeoverjp/booklog/assets/3068739/73858382-cab9-4c56-a822-0f3c1d0f16bc">
+
+- unitの操作では基本的なトランザクションをサポートしていて、矛盾している場合は全ての操作を実行しない
+- unitの操作のときには、まずlunitの状態を確認して不要な操作を省略する
+- man bootup(7)に起動・終了に関する重要なtargetの関係が描かれている
+
+- systemctl log-levelで一時的にログレベルを変更することができる
+- systemd-analyze cat-configで設定ファイルの内容を確認できる
