@@ -1,5 +1,7 @@
 # links
 
+- [systemdの思想と機能―Linuxを支えるシステム管理のためのソフトウェアスイート](https://gihyo.jp/book/2024/978-4-297-13893-6)
+
 # 1. systemdとは
 
 - systemdが幅広い領域を扱っている理由は、「現代の Linux 環境 でシステムやサービスを起動/終了/管理するPID 1が扱えるべきものは何か?」が多岐に渡るから
@@ -31,3 +33,67 @@
 
 - systemctl log-levelで一時的にログレベルを変更することができる
 - systemd-analyze cat-configで設定ファイルの内容を確認できる
+
+# 4. プロセス実行環境の用意
+
+- sysytemdは`fork()`して子プロセスに対してcgroup等環境設定をしてから、execする
+  - 上記cgroupを使って、孫プロセスなども追跡できる
+
+- `systemd-run(1)`コマンドを使うことで、対話的にserviceタイプのunitと環境を作成することができる
+  - `systemd-run -p EnvironmentFile=/etc/environment env`とすれば、環境変数ファイルを読み込んだ上でenvコマンドを起動することができる
+  - この場合、あくまでもsytemdの子プロセスとして起動されるので、`systemd-run`を実行したシェルの環境変数は引き継がれない
+
+- sandboxingによるセキュリティ強化もできる
+  - 例
+    - ネットワークへのアクセス禁止
+    - 利用できるシステムコールの制限
+    - 実行可能で書き込み可能なメモリの割当を禁止
+
+# 5. service unit
+
+- 
+
+# 6. timer/path/socket unit
+
+- 
+
+# 7. generatorとmount/automount/swap unit
+
+- 
+
+# 8. control group, slice unit, scope unit
+
+- 
+
+# 9. udev, device unit
+
+- 
+
+# 10. systemd-journald
+
+- 
+
+# 11. core dump管理
+
+- 
+
+# 12. systemd-logind, pam_systemd
+
+- 
+
+# 13. systemd-tmpfiles, systemd-sysusers
+
+- 
+
+# 14. D-Busとpolkit
+
+- 
+
+# 15. systemd-resolved
+
+- 
+
+# 16. systemdのその他の機能
+
+- 
+
