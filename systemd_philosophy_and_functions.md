@@ -51,7 +51,13 @@
 
 # 5. service unit
 
-- 
+- oneshotの場合、デフォルトではactivatingからactiveにならずにinactiveに遷移する
+- idleの場合、他の全てのjobより後にjobを開始する
+- ExecStartPost実行中はactivating状態
+- simpleの場合、ExecStartPostはExecStartよりも前に実行される可能性がある
+
+- 時間のかかる初期化処理を待つ場合、初期化用と起動用のunitに分ける方法もある
+- 全部の起動が完了した後に特定サービスを起動する簡単な方法はない
 
 # 6. timer/path/socket unit
 
