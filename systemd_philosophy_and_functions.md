@@ -61,7 +61,7 @@
 
 # 6. timer/path/socket unit
 
-- 
+- `OnBootSec`と`OnUnitInactiveSec`を組み合わせることで、繰り返し実行できる
 
 # 7. generatorとmount/automount/swap unit
 
