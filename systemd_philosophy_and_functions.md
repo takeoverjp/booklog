@@ -62,6 +62,9 @@
 # 6. timer/path/socket unit
 
 - `OnBootSec`と`OnUnitInactiveSec`を組み合わせることで、繰り返し実行できる
+- path unitを使えば、ファイルの生成などをトリガにserviceをactiveにすることができる
+- socket unitを使えば、socketへの接続をトリガにserviceをactiveにすることができる
+  - その際、systemdではacceptせずservice側でacceptすることも、systemdでacceptしてからserviceにfdを渡すこともできる
 
 # 7. generatorとmount/automount/swap unit
 
