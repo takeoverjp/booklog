@@ -68,7 +68,10 @@
 
 # 7. generatorとmount/automount/swap unit
 
-- 
+- mount typeのunitは、fstabからgeneratorによって生成されたunitと、静的に置かれた.mountファイルを混在させることができる
+  - fstabのmountオプションを指定するフィールドに、`x-systemd.automount`などを指定することで、generatorが生成するunit fileの設定を行うことができる
+- automount typeのunitは、マウントポイントへのアクセスを契機として自動的にmountする
+- fstabでsystemd固有のoptionを指定している場合、`mount`コマンドが使えない。代わりに`systemd-mount`コマンドを使う。
 
 # 8. control group, slice unit, scope unit
 
