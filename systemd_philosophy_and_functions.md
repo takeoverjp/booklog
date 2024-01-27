@@ -75,7 +75,10 @@
 
 # 8. control group, slice unit, scope unit
 
-- 
+- systemdはserviceごとにcgroupを作るため、serviceが起動したプロセスも追跡してまとめてsignalを投げることができる
+- slice unitはリソース管理のグルーピングに使われる
+- scope unitはsystemd以外のプロセスがforkしたプロセスをunitとして扱いたいときに使う
+- systemd-cgtopでグループごとのリソース消費を確認することができる
 
 # 9. udev, device unit
 
