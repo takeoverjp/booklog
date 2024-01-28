@@ -82,7 +82,8 @@
 
 # 9. udev, device unit
 
-- 
+- udevはsystemdよりも前からあるプロジェクトだが、今はsysemdに統合されている
+- 物理デバイスから取得できない情報を得るために、hwdbという仕組みが用意されている
 
 # 10. systemd-journald
 
