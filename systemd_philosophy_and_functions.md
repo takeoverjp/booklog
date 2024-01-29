@@ -87,7 +87,11 @@
 
 # 10. systemd-journald
 
-- 
+- systemd-journaldは、journalだけでなくkmsg, syslog, console, wallに転送することもできる
+- journalにはboot Id (起動ごとのUUID)も記録する
+- journalは「最低何日分のログを残す」という設定ができないため、長期保存には向かない
+- journalはunitごとにログのレート制限をかけることができる
+- loggerコマンドに--journaldオプションをつけることでjournalにログを残すことができる
 
 # 11. core dump管理
 
