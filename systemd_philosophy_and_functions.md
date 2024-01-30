@@ -95,7 +95,9 @@
 
 # 11. core dump管理
 
-- 
+- gdb付属のgcoreコマンドで実行中プロセスのcore dumpを生成することができる
+- `systemd-coredump`により、`/proc/<PID>/status`やopenしているファイルの情報、バックトレースなど、かなり細かい情報をjournalに保存してくれる
+- `coredumpctl`コマンドで`systemd-coredump`が保存したcoreの情報を確認することができる
 
 # 12. systemd-logind, pam_systemd
 
