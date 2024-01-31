@@ -101,7 +101,13 @@
 
 # 12. systemd-logind, pam_systemd
 
-- 
+- logindはセッションの管理と、sleep/shutdownと言った電源制御の要求を行う
+  - セッションとは、ユーザがログインしてからログアウトするまでの期間を表す
+- pam_systemdは、PAMによるアカウント管理、認証、パスワード管理、セッション管理を行う
+  - PAM: Pluggable Authentication Modules
+- `loginctl`でセッションの状態を確認することができる
+- Inhibitor Locksを使うことで、sleep/shutdownを待たせることができる
+  - `systemd-inhibit`コマンドで利用できる
 
 # 13. systemd-tmpfiles, systemd-sysusers
 
