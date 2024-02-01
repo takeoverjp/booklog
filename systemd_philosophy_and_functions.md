@@ -111,7 +111,8 @@
 
 # 13. systemd-tmpfiles, systemd-sysusers
 
-- 
+- `systemd-tmpfiles`を使うことで、システム起動時にtmpfsのファイルの作成・削除・属性設定を行うことができる
+- `systemd-sysusers`を使うことで、システム起動時に必要なユーザやグループの作成をすることができる
 
 # 14. D-Busとpolkit
 
