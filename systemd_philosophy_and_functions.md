@@ -116,11 +116,13 @@
 
 # 14. D-Busとpolkit
 
-- 
+- D-Bus は、「メッセージ」を「オブジェクト」に送るしくみ
+- メッセージの種類は、METHOD_ CALL、METHOD_RETURN、ERROR、SIGNAL の 4 種類
+- D-Bus Activationを使うことで、dbusにメッセージを送って起動できるserviceを作ることができる
+- polkitを使うことで特定のプロセスの特定のアクションに対して、認証の要否を設定することができる
+- Cockpitというwebベースのシステム管理UIは、内部でD-Bus APIを使っている人
 
-# 15. systemd-resolved
-
-- 
+# 15. systemd-re- 
 
 # 16. systemdのその他の機能
 
