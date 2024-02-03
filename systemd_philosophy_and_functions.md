@@ -122,7 +122,12 @@
 - polkitを使うことで特定のプロセスの特定のアクションに対して、認証の要否を設定することができる
 - Cockpitというwebベースのシステム管理UIは、内部でD-Bus APIを使っている人
 
-# 15. systemd-re- 
+# 15. systemd-resolved
+
+- 'resolv'は従来の仕組みで、'resolve'はsystemd-resolvedの表記
+- glibcはNSS(Name Service Switch)という仕組みで名前解決関数を提供していた
+  - hostsファイルとDNSという２つの仕組みを切り替えることができる
+- systemd-resolvedでは、リンクごとに名前解決を設定することができる
 
 # 16. systemdのその他の機能
 
