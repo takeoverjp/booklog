@@ -131,5 +131,9 @@
 
 # 16. systemdのその他の機能
 
-- 
+- systemd-networkdはNetworkManageと比較して依存が少ないので、initramfsに入れてネットワーク起動するといった使い方に向く
+- networkctrlコマンドでsystemd-networkdを制御できる
+- systemd-credsでパスワード等のクレデンシャルの暗復号ができる
+- systemd-oomdはユーザ空間で実装されたOOM
+  - [スワップの弁護:よくある誤解を解く](https://chrisdown.name/ja/2018/01/02/in-defence-of-swap.html)
 
