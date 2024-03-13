@@ -181,6 +181,11 @@
     - [社内で提供しているマイクロサービスの参考実装について - DMM inside](https://inside.dmm.com/articles/microservices-template/#content0)
     - [マイクロサービスのためのプロジェクト生成ツール Lazybones を使ってみた](https://engineering.linecorp.com/ja/blog/lazybones-project-generation-tool-for-micro-service)
 
+- 犠牲的アーキテクチャ
+  - 考えがうまくいくことがわかったら投げ捨てるよう設計されたアーキテクチャ
+  - 正しいアーキテクチャを選択できるくらい十分に学ぶ方法として、PoCをつくることが挙げられる
+  - クラウドサービスの場合は、市場があることを証明することもできる
+
 # ７．進化的アーキテクチャの落とし穴とアンチパターン
 
 - 
