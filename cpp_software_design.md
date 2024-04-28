@@ -295,6 +295,12 @@ https://www.oreilly.co.jp/books/9784814400454/
   - インスタンス生成時の動的メモリ割当の性能オーバーヘッド
   - メモリオーバーヘッド
 
+- Pimplパターンの実装例
+  - Cap'n Protoの`EzRpcServer`, `EzRpcClient`は、`Impl`クラスのインスタンスへのポインタを保有しており、外部から差し替える手段も提供していないため、まごうことなきPimplパターン
+  - なお、デストラクタも明示的に実装している
+  - Cap'n Protoでは、他にもいくつかの場所でPimplパターンを活用している
+  - https://github.com/capnproto/capnproto/blob/v0.9.2/c%2B%2B/src/capnp/ez-rpc.h#L37-L157
+
 ## ガイドライン２９：Bridgeパターンの性能向上・低下には要注意
 
 - Bridgeパターンは性能を低下させうる
