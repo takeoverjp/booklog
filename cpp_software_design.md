@@ -325,6 +325,8 @@ https://www.oreilly.co.jp/books/9784814400454/
 
 ## ガイドライン３１：干渉しない実行時多態を実現するにはExternal Polymorphismパターン
 
+- External Polymorphismパターンは、継承関係にないクラスで多態性を実現するためのパターン
+
 - 長所
   - **任意の型**に対して、既存コードに干渉せず、多態動作を追加できる
     - OCPを完全遵守
