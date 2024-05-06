@@ -353,6 +353,7 @@ https://www.oreilly.co.jp/books/9784814400454/
 - Type Erasureパターン
   - 固定された処理セットを持つ型の新規追加を容易にする目的を持つデザインパターン
   - External Polymorphismパターンの値セマンティクスベースの実装
+  - External Polymorphismパターンと、Bridgeパターンと、Prototypeパターンを組み合わせて実現する
 
 - 目的
   - 次の性質を持つ拡張可能な型セットを対象に、既存コードに鑑賞せず値ベースに抽象化する
