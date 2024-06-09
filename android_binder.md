@@ -44,3 +44,7 @@
 
 - メソッド呼び出しを実現するため、`BC_TRANSACTION`(呼出)と`BC_REPLY`(応答)の2種類のioctlがあり、`BC_REPLY`を送るときには対応する`BC_TRANSACTION`を送ってきたスレッドに送信しなければならない。binderドライバはioctlごとに呼出スレッドを記憶しており、`BC_REPLY`時に暗黙的に応答を返すスレッドを適切に選択してくれる。
 - binderはfd passing (送信プロセスであるfdが指すファイルオブジェクトと同一のファイルオブジェクトをさすfdを、受信プロセスのfdテーブルに登録した上でそのfdを送る) もサポートしている。
+
+# 第6章 スレッドプールのレイヤ - BBinder と IPCThreadState
+
+- `getService()`で`IBinder`を得られるが、これは同一プロセスの場合は`BBinder`(ただのポインタ)であり、別のプロセスの場合は`BpBinder`(プロキシ)になる
