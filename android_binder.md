@@ -72,3 +72,4 @@
 
 - mediaserverというプロセスにホストされていた、audioflinger, camera, mediaplayerは、セキュリティ的に大きな問題となったstagefrightバグの影響で個別のプロセスに分割された
 - Binderを用いたシステムサービスの仕組みは、stagefrightバグに代表されるようなセキュリティ対策の必要性を、書記のAndroidの頃から見越して作られた仕組み
+- メソッド呼出を受け付けるスレッドはGUIスレッドではない
