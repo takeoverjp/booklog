@@ -20,6 +20,12 @@
 
 - SOLID原則
 - CLEANコード
+  - Cohesive (凝集性)
+  - Loosely Coupled (粗結合)
+  - Encapsulated (カプセル化)
+  - Assertive (断定的)
+  - Nonredundant (非冗長)
+
 ## 3. アーキテクチャの設計
 
 ## 4. アーキテクチャの実装
