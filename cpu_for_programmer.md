@@ -83,3 +83,72 @@
 - ループアンローリング最適化
   - 次の周回にある真の依存関係のない処理を、現在のループ周回で一緒に実行することで、無駄な空きサイクルを埋める
   - ループアンローリングをすることで、使用するレジスタが増え、レジスタ不足による性能劣化につながる可能性もある
+
+### 3.8 命令レイテンシの計測実験
+
+- 命令のレイテンシをミクロなサイクル粒度で正確に計測することは困難なので、実行回数を多くして統計的に観測する
+  - 本書では、10億回の平均を取っている
+  - ループ自体の処理のノイズを減らすために、100回の命令をループ展開したプログラムにしている
+  - すべての入出力レジスタを`rax`にすることで各命令間に真のデータ依存関係を発生させることで、スーパスカラによる同時実行を防ぎ、命令単位のレイテンシを計測可能にする
+
+```
+$ git clone https://github.com/takenobu-hs/cpu-assembly-examples.git
+$ cd cpu-assembly-examples/x86/linux/E00.perf_expt
+$ echo 1 | sudo tee /proc/sys/kernel/perf_event_paranoid setting
+$ gcc -no-pie latency_add.S -o latency_add
+$ perf stat -e "cycles,instructions" ./latency_add
+loop-variable = 10000000
+
+ Performance counter stats for './latency_add':
+
+     1,002,841,414      cycles                                                      
+     1,031,845,826      instructions              #    1.03  insn per cycle         
+
+       0.230580767 seconds time elapsed
+
+       0.230534000 seconds user
+       0.000000000 seconds sys
+$ gcc -no-pie latency_mul.S -o latency_mul
+$ perf stat -e "cycles,instructions" ./latency_mul
+loop-variable = 10000000
+
+ Performance counter stats for './latency_mul':
+
+     3,003,029,694      cycles                                                      
+     1,032,332,191      instructions              #    0.34  insn per cycle         
+
+       0.666553809 seconds time elapsed
+
+       0.665895000 seconds user
+       0.000000000 seconds sys
+
+
+$ gcc -no-pie latency_load.S -o latency_load
+$ perf stat -e "cycles,instructions" ./latency_load
+loop-variable = 10000000
+
+ Performance counter stats for './latency_load':
+
+     5,007,364,513      cycles                                                      
+     1,032,872,706      instructions              #    0.21  insn per cycle         
+
+       1.096741547 seconds time elapsed
+
+       1.096175000 seconds user
+       0.000000000 seconds sys
+
+
+```
+
+- コンパイル時に`-no-pie`をつけているのは、PIEを考慮したアセンブリ実装になっていないから
+
+#### 3.8.4 命令の同時実行を推定する
+
+- 入出力レジスタを各命令ごとに変え、真のデータ依存を無くすことで、スーパスカラによる命令の同時実行数を推定することができる
+- ただし、この手法で推定できるのは、このプログラムにおける並列実行数であり、最大の並列実行数でないことに注意が必要である。例えば、フロントエンドで並列度が律速している可能性がある。
+
+
+#### 3.8.5 アウト・オブ・オーダー実行の特性を計測する
+
+- レイテンシの長いload命令の後に、真のデータ依存関係があるadd命令を実行し、そのあと更に真のデータ依存関係がある処理だけを実行した場合と、そのあとは真のデータ依存関係がない処理を実行した場合とを比較することで、アウト・オブ・オーダー実行の効果を見ることができる
+- ただし、一般的にCPUのミクロな挙動の正確な計測は難しい。特定の命令やレジスタの組み合わせにおいて実行が速くなったり遅くなったりするようにCPUが設計されている場合もある。あるいは、特定の条件下でCPUの特別な機能が作動し、通常と異なる挙動となる場合もある。
