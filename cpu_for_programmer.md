@@ -756,3 +756,9 @@ loop-variable = 10000000
   - 2. データのメモリアクセスを効率的にするためのデータ構造の設計
   - 3. 処理負荷の集中箇所における性能劣化要因
   - 4. 測定結果から特定した想定外の性能劣化要因への対策
+
+## A. CPUについてさらに広く深く知るには
+
+- [命令レベル並列処理プロセッサアーキテクチャとコンパイラ](https://www.coronasha.co.jp/np/isbn/9784339025835/)
+- [東京大学大学院 情報理工学系研究科 創造情報学専攻で行っている「先進計算機構成論」](https://github.com/shioyadan/advanced-computer-organization)
+- [Arm Architecture Reference Manual for A-profile architecture](https://developer.arm.com/documentation/ddi0487/latest/)
