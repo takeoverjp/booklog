@@ -762,3 +762,9 @@ loop-variable = 10000000
 - [命令レベル並列処理プロセッサアーキテクチャとコンパイラ](https://www.coronasha.co.jp/np/isbn/9784339025835/)
 - [東京大学大学院 情報理工学系研究科 創造情報学専攻で行っている「先進計算機構成論」](https://github.com/shioyadan/advanced-computer-organization)
 - [Arm Architecture Reference Manual for A-profile architecture](https://developer.arm.com/documentation/ddi0487/latest/)
+
+## D. マイクロオペレーション方式と、その命令レイテンシ
+
+- マイクロオペレーション方式：複数の小さな操作単位の組み合わせによって１つの複雑な命令を構成する実装方式
+  - 小さな操作単位のことを「マイクロ命令」、「マイクロコード」、「μops」と呼んだりする
+  - ArmやRISC-VなどのRISC系CPUでは、多くの命令を最初からパイプラインが滞らないように単純にしているので、多くの命令においてマイクロオペレーションへの分割を行わない。せいぜい、メモリアクセス命令の「アドレス計算」と「メモリアクセス」を分ける程度。
