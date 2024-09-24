@@ -42,6 +42,12 @@
 - `PT_TLS`には、Thread Local Storage (TLS)の初期値が入っている
 - `PT_GNU_RELRO`のセグメントは、ロードしたメモリの対応する範囲をリロケーションが終わったあとに読み込み専用にする。GOT Overwrite攻撃対策。RELROが普及するにつれて、lazy bindingは使われなくなりつつある。
 
+### #5 ld-linux.soの環境変数を利用する
+
+- 詳細は`man ld-linux.so`
+- `LD_DEBUG=symbols`でシンボル解決の様子を確認できる
+- `LD_AUDIT`環境変数で、ld-linux.soが新たにシンボルを束縛したときやPLTエントリ内の関数が呼び出されたときにユーザが登録したコールバックを呼び出すことができる
+
 ## 3. OS Hack
 
 - 
