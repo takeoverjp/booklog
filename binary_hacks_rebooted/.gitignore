@@ -1,0 +1,4 @@
+*.o
+/hello_for_elfhack
+/hello_for_elfhack.h
+/hello_exec_byte
