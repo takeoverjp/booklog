@@ -68,6 +68,12 @@
   - `LD_PRELOAD`と組み合わせて、既存のライブラリ関数をラップする
   - `libc_start_main`関数をラップすることで、main関数の前に任意の処理（サンドボックスの初期化など）を差し込む
 
+### #8 IFUNCを使って実行時に実装を切り替える
+
+- `void XXX(void) __attribute__((ifunc("resolve_XXX")))`により、`XXX`のシンボル解決時に`resolve_XXX`が呼び出され、どの実装を使うかを選択することができる
+- `main()`の前に呼ばれる関数の一つとして、IFUNCのresolver functionもある（他には`__attribute__((constructor))`やC++のグローバル変数のコンストラクタなど）
+- glibcに依存する点に注意が必要
+
 ## 3. OS Hack
 
 - 
