@@ -175,6 +175,11 @@
 - `DW_CFA_val_expression`命令により、レジスタの値を復元する際にDWARF Expressionを実行し、評価結果を使用することができるが、GNU Assemblerでは使えない
 - このHackでは`.cfi_escape`という疑似命令でバイト列をDWARFバイトコードに埋め込む
 
+#### #21 DWARFで標準出力に出力する：DWARF III
+
+- gccが生成したアセンブリ命令を変更しなくても、DWARF ExpressionだけでROPから処理を実行することができる
+- すなわち、DWARF Expressionにバックドアをしかけることも理論的に可能なので、逆アセンブル結果を確認したプログラムであっても、信頼できないELFファイルはじっこうするべきではない
+
 ## 3. OS Hack
 
 - 
