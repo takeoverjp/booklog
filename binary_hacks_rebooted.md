@@ -201,6 +201,14 @@
     - Linuxカーネルがデフォルトで認識できないファイルフォーマット(WebAssemblyなど)を対応するプログラムで実行する
   - binfmt_miscファイルシステムをmountし、`/proc/sys/fs/binfmt_misc`経由で設定する
 
+### #23 LinuxでHuge Pageを使う
+
+- TLBミスを減らすために、標準で4KiBのページサイズを2MiBや1GiBに増やすことができる
+- 利用者があまり意識せずに使えるHuge PageのことをTransparent Huge Pageと呼ぶ
+- `/sys/kernel/mm/transparent_hugepage/enabled`とglibcの環境変数`GLBC_TUNABLES`の`glibc.malloc.hugetlb=value`を介して設定可能
+- 本書のサンプルでは、標準のページサイズでは97.6%TLBミスしていたストア処理が、THPを使うことで0.0%になり、実行時間も１４％程度削減できた
+- 明示的にHuge Pageを確保することもできる
+
 ## 4. コンテナHack
 
 - 
