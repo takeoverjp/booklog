@@ -209,6 +209,14 @@
 - 本書のサンプルでは、標準のページサイズでは97.6%TLBミスしていたストア処理が、THPを使うことで0.0%になり、実行時間も１４％程度削減できた
 - 明示的にHuge Pageを確保することもできる
 
+### #24 CRIUを使ってプロセスを保存、再開する
+
+- CRIU(Checkpoint/Restore In Userspace)とは、Linuxのプロセスの状態をディスク上のファイルに保存し、そのファイルから再開することを可能にする
+- CRIUでは、PIDやfdが継続して利用できる
+- fdは通常のファイルの場合、再度openして、checkpointにおける読み出し位置までseekすることで実現する
+- PIDは`/proc/sys/kernel/ns_last_pid`にcheckpointにおけるPID-1を書き込むことで実現する
+  - `criu-ns`を使うことで、PIDが重複する場合にPIDネームスペースを作成することで対応することもできる
+
 ## 4. コンテナHack
 
 - 
