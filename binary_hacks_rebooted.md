@@ -263,6 +263,24 @@
 - `vsyscall`はLinuxカーネルが決まったアドレスに自動的にマップしていたので、セキュリティリスクがあることや、デバッガ等のツールが特別扱いしなければならないなどの課題を有していた
 - `vDSO` (vsyscall Dynamic Shared Object)は、`vsyscall`を共有ライブラリ化することで、ASLRに対応し、またELFフォーマットとしてシンボル名やデバッグ情報を含められるようにしたもの
 
+### #30 KVMを使ってハイパーバイザを作成する
+
+- ハイパーバイザには、ハードウェア上で直接動作するType1と他のOS上で動作するType2がある
+- LinuxのKVM (Kernel-based Virtual Machine)はType2ハイパーバイザ
+  - Linux + KVMをType1ハイパーバイザとみなすこともできなくはないが、VMをLinuxの１プロセスとして実行して、リソース管理やスケジューリングをホストOSに任せているため、ここではType2とみなしている
+
+- QEMUのようなエミュレータと比較して、
+  - CPUのハードウェア仮想化支援機能を使うため、KVMの方がオーバーヘッドが少ない
+  - 異なるCPU archのプログラムは実行できない
+- `/dev/kvm`に対して`ioctl`でKVMのAPIを呼び出すことで、VMの作成・実行などの操作を行う
+- QEMUも`--enable-kvm`フラグにより、KVMを使うハイパーバイザとして利用できる
+- KVM APIの大まかな流れ
+  - `/dev/kvm`を開く
+  - `KVM_CREATE_VM`でVMを作成する
+  - `KVM_CREATE_VCPU`, `KVM_GET_VCPU_MMAP_SIZE`などでVMの設定を行う
+  - `KVM_RUN`でVMを実行する。`vmexit`が起こるまでブロックする
+  - `KVM_RUN`が抜けたら(VMが実行できない処理(センシティブ命令)を実行した)`exit_reason`からなぜ`vmexit`が発生したかを確認し、それに応じた処理を行う
+
 ## 4. コンテナHack
 
 - 
