@@ -281,6 +281,28 @@
   - `KVM_RUN`でVMを実行する。`vmexit`が起こるまでブロックする
   - `KVM_RUN`が抜けたら(VMが実行できない処理(センシティブ命令)を実行した)`exit_reason`からなぜ`vmexit`が発生したかを確認し、それに応じた処理を行う
 
+### #31 LinuxカーネルHack入門
+
+- Linuxカーネルのソースコードを読む方法：
+  - オンラインのクロスリファレンスサイト（例：bootlin）を利用
+  - ローカル環境でGitリポジトリをクローン
+  - cscopeやclangdなどのツールを使用してソースコードをナビゲート
+- Linuxカーネルのビルド手順：
+  - .configファイルの作成（make menuconfig、defconfig、localmodconfigなど）
+  - makeコマンドでビルド
+  - vmlinuxとbzImageファイルが生成される
+  - `CC=`オプションにより、古いバージョンのGCCやClangでビルドすることもできる
+  - `O=`オプションにより、Out-of-Source Buildすることもできる
+- ルートディスクイメージの作成：
+  - debootstrapを使用してDebianベースのrootfsを作成
+  - ディスクイメージファイルを作成し、ext4ファイルシステムとして初期化
+  - chrootを使用してrootfsの内容を変更可能
+- QEMUでLinuxシステムをブート：
+  - qemu-system-x86_64コマンドを使用
+  - カーネルイメージ、ディスクイメージ、カーネルパラメータなどを指定
+  - KVMを有効化して高速化
+  - kernel起動オプションによりカスタムinitを利用することができる
+
 ## 4. コンテナHack
 
 - 
