@@ -510,6 +510,14 @@
   - メモリアクセスの可否を記録するshadow memoryを確保する
   - メモリ確保時に、隣接した領域にredzoneを確保し、redzoneはアクセス負荷であることをshadow memoryに記録する
 
+### #48 Linuxパフォーマンス解析ことはじめ
+
+- システムの挙動を観測する「可観測性ツール」には、下記の分類がある
+  - イベントのカウント：イベントの発生回数およびその統計量を表示する。top, htop, iostat, perf statなど。
+  - プロファイリング：定期的にスタックトレースを記録するなどにより、どの部分で時間がかかっているかを解析する。gprof, pprof, perf recordなど。
+  - トレーシング：発生したイベントをタイムスタンプとともに記録する。strace, perf record, ftrace ,bpftace, perfetto, DBI/Intel PTなど。 
+
+
 ## 6. セキュリティHack
 
 - 
