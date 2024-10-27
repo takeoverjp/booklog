@@ -517,6 +517,10 @@
   - プロファイリング：定期的にスタックトレースを記録するなどにより、どの部分で時間がかかっているかを解析する。gprof, pprof, perf recordなど。
   - トレーシング：発生したイベントをタイムスタンプとともに記録する。strace, perf record, ftrace ,bpftace, perfetto, DBI/Intel PTなど。 
 
+### #49 ftraceを使ってカーネル内で起こっていることをトレースする
+
+- ユーザ空間からでも、ftraceのトレースイベントを記録することができる
+  - `/sys/kernel/tracing/trace_marker`など
 
 ## 6. セキュリティHack
 
