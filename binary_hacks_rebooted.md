@@ -522,6 +522,10 @@
 - ユーザ空間からでも、ftraceのトレースイベントを記録することができる
   - `/sys/kernel/tracing/trace_marker`など
 
+### #50 eBPFを使ったトレーシング入門
+
+- libbpf-rsやAyaを使うことで、RustでeBPFプログラミングができる
+
 ## 6. セキュリティHack
 
 - 
