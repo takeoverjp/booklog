@@ -526,6 +526,11 @@
 
 - libbpf-rsやAyaを使うことで、RustでeBPFプログラミングができる
 
+### #51 DBIで実行命令をトレース・改変する
+
+- DBI: Dynami Binary Instruction。対象プログラムに対して動的に実行命令のトレース・改変を行う
+- 例えば、valgrind, DynamiRIO, Fridaなど
+
 ## 6. セキュリティHack
 
 - 
