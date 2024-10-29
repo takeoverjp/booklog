@@ -531,6 +531,30 @@
 - DBI: Dynami Binary Instruction。対象プログラムに対して動的に実行命令のトレース・改変を行う
 - 例えば、valgrind, DynamiRIO, Fridaなど
 
+### #52: Intel PTで高速にトレースを取得する
+
+- Intel PTは高速なプログラムトレースを提供するが、全命令をリアルタイムで保存するのは非現実的。
+- Intel PTは必要最小限の情報をパケット形式で提供。
+  
+- **Intel PTのパケット種類**
+  - **Target Instruction Pointer (TIP) パケット**: IPが変化した際に生成され、遷移先のアドレスを含む。
+  - **Flow Update (FUP) パケット**: 非同期イベント(割込みや例外など)でIPが変化した際に生成。
+  - **Taken Not-Taken (TNT) パケット**: 条件分岐命令実行時に生成され、分岐条件の成立 or 不成立を記録。
+  - **MODEパケット**: プロセッサの実行モード(16,32,64ビットモードなど)に関する情報を提供。
+
+- **トレース復元の必要性**
+  - Intel PTから実際のトレースを復元するためには、逆アセンブルやデコーダが必要。
+  - Intel PTは自己書き換えコードやJITコードには利用しにくい。
+
+- **Intel PTの利用方法**
+  - Intel PTはperfやgdbから利用可能で、自分でプログラムを実装することも可能。
+  - `libipt`ライブラリを使用してパケットをデコード。
+
+- **プログラムの実装例**
+  - `/sys/bus/event_source/devices/intel_pt/type`を`open`してperfのファイルディスクリプタを取得する。
+  - `trace_and_count`関数でlibiptを用いて実行された命令を取得する。
+  - ASLRが無効化されている前提とすることで、実装を簡素化している。
+
 ## 6. セキュリティHack
 
 - 
