@@ -557,6 +557,10 @@
 
 ## 6. セキュリティHack
 
+### #53 seccompでプロセスが使えるシステムコールを制限する
+
+- Docker, Chromeブラウザ, VMM (Virtual Machine Monitor)などで、実際に使われている
+
 - 
 
 ## 7. 数値表現とデータ処理Hack
