@@ -561,7 +561,29 @@
 
 - Docker, Chromeブラウザ, VMM (Virtual Machine Monitor)などで、実際に使われている
 
-- 
+### #54 Landlockで非特権プロセスサンドボックスを作る
+
+- Linux 5.13以降に導入された、root権限なしで利用できるサンドボックス機構
+  - AppArmorやSELinuxはroot権限が必要だが、Landlockは非root権限でも利用可能
+  - Stackable LSMとして実装され、他のLSMと共存可能
+
+- Landlockの特徴
+  - ファイルシステムやネットワークへのアクセス制限が可能
+  - seccompと比べて適用が容易
+    - パスベースでファイルアクセス制限を設定可能
+    - システムコールレベルではなく、リソースの抽象度で制限を設定
+  - カーネルで処理が完結するため、ptraceを使う手法より高速
+
+- Landlockの使用方法
+  1. 拒否したいファイル操作を定義したルールセットを作成
+  2. 各パスごとに許可する操作を定義したルールを追加
+  3. ルールセットをプロセスに対して有効化
+
+- 注意点
+  - 以下のシステムコールは制限できない(ABI v3時点):
+    - chdir, stat, flock, chmod, chown, setxattr, utime, ioctl, fcntl, access
+  - カーネルのバージョンによってサポートされる機能が異なる
+
 
 ## 7. 数値表現とデータ処理Hack
 
