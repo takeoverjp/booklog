@@ -996,6 +996,33 @@
   - x86互換の動作を選択可能
   - FMA例外やNaN生成などの挙動を変更可能
 
+### #76 SIMD命令セットの基礎知識
+
+- SIMD命令の概要
+  - 1つのレジスタに複数データを保持し同時処理を行う
+  - single-instruction multiple-dataの略
+  - データ並列処理による高速化が可能である
+
+- x86/x86-64のSIMD命令セット
+  - MMX: 64bitレジスタを使用
+  - SSE: 128bitレジスタを使用
+  - AVX: 256bitレジスタを使用 
+  - AVX-512: 512bitレジスタを使用
+  - Intel SDMやIntrinsics Guideが参考になる
+
+- ARMのSIMD命令セット
+  - 32bit ARM
+    - レガシーSIMD: 汎用レジスタを使用
+    - NEON: 64/128bitレジスタを使用
+  - 64bit ARM
+    - NEON: 128bitレジスタを使用
+    - SVE/SVE2: 128-1024bitレジスタを使用
+
+- SIMD命令の利用方法
+  - コンパイラに適切なアーキテクチャ指定フラグが必要
+  - ISA世代指定/CPUマイクロアーキテクチャ指定/拡張命令セット指定などの方法がある
+  - cpuid命令やcpu_featuresライブラリで実行時に対応命令セットを検出できる
+
 ## 8. 言語処理系Hack
 
 - 
