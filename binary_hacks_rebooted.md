@@ -1252,6 +1252,33 @@
   - JITアセンブラ（Xbyak、AsmJitなど）を利用して柔軟にコード生成
   - GNU lightningやGNU libjit、LLVMなどの抽象的な命令セットを検討
 
+### #86 GCC/Clangの組み込み関数を利用する
+
+- 組み込み関数の概要
+  - 多くのC/C++コンパイラは標準ライブラリやシステムコール以外にコンパイラ固有の関数を備えている
+  - ビルトイン関数、イントリンシック関数、組み込み関数などと呼ばれる
+  - アーキテクチャ固有の機能を利用したり、コンパイラ独自の機能拡張を提供するものが多い
+  - 移植性は低いが効率のよいコードを生成できる場面も多い
+
+- ビット操作
+  - 1の数を数える
+    - x86-64、AArch64、WebAssemblyなどのアーキテクチャでは1の数を数える専用命令がある
+    - GCC、Clangには__builtin_popcount、__builtin_popcountllという組み込み関数がある
+    - Visual Studioでは_mm_popcnt_u32、_mm_popcnt_u64が対応する
+
+  - 連続する0の数を数える
+    - __builtin_ctzは最下位ビットから0が何個続くかを求める
+    - __builtin_clzは最上位ビットから0が何個続くかを求める
+    - Visual Studioでは_BitScanForward、_BitScanReverseが対応する
+
+- コードが実行されないことをコンパイラに伝える
+  - __builtin_unreachable()は実行時にその場所に到達しないというヒントをコンパイラに与える
+  - ClangやVisual Studioには__builtin_assume(x)や__assume(x)という組み込み関数がある
+
+- 標準化された組み込み関数やマクロ
+  - C++20やC23などで標準化されている
+  - 組み込み関数に対応する標準関数を利用するのが望ましい
+
 ## 9. そのほかのHack
 
 - 
