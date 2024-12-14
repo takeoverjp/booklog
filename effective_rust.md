@@ -535,4 +535,13 @@ cargo/rustでは以下のテストをサポートしている
 - ベンチマーク
 - ファズテスト
 
+### 項目31：ツールのエコシステムを活用しよう
+
+- [rust playground](https://play.rust-lang.org)
+- miri: unsafeコードのチェック
+- dependabot: 依存ライブラリの更新管理
+- cargo-semver-checks: セマンティックバージョンが正しく付与できているか
+- cargo-expand: マクロで変なことが起きた時の解析
+- [Godbolt compiler explorer](https://rust.godbolt.org): 機械語の確認
+
 ## 6. 標準Rustの向こうへ
