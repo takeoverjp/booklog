@@ -544,4 +544,12 @@ cargo/rustでは以下のテストをサポートしている
 - cargo-expand: マクロで変なことが起きた時の解析
 - [Godbolt compiler explorer](https://rust.godbolt.org): 機械語の確認
 
+### 項目 32：CI システムを設定しよう
+
+- rust-
+toolchain.tomlを用いて、CIビルドで用いるバージョンを固定する
+- no std互換かどうかをチェックする
+- 依存グラフを管理する
+- ライブラリのばあい、Cargo.lockを使わないビルド
+
 ## 6. 標準Rustの向こうへ
