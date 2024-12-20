@@ -569,3 +569,7 @@ cargo/rustでは以下のテストをサポートしている
 
 - bindgenはc++にたいしてしようする場合制約がある
 - c++に対して使用する場合は、cxxのほうが制約が少ない
+
+## あとがき
+
+- [Aync rust](https://rust-lang.github.io/async-book/)
