@@ -13,3 +13,12 @@ https://bookclub.kodansha.co.jp/product?item=0000398182
 
 - cargo-makeを使うことで、makeのようにタスクの依存関係を管理することができる
 - cargo-makeでは、watch設定により、ファイルを変更したときに自動的にコマンドを実行することができる
+
+## 3. 最小構成アプリケーションの実装
+
+- cargo add で依存クレートを追加できる
+- [Webサーバーアーキテクチャ進化論2023](https://blog.ojisan.io/server-architecture-2023/)
+- async関数にすることで、芋づる式にasyncにしなければならなくなる場合がある
+- tokioのランタイムマクロがなにをしているかは、cargo expandで確認できる
+- anyhowクレートを使うことで、任意のエラーを統一的に処理することができる
+- cargo-nextestを使うことで、ユニットテストの実行コストを下げたりすることができる
