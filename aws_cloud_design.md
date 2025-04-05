@@ -38,3 +38,7 @@
   - キュー連携
   - データベース共有
 - 上記に加え、ストリーミング連携も近年よく使われる
+- AWSでAPI連携を実現するためのサービス
+  - API Gateway : REST APIやWebSocket
+  - AppSync : GraphQL
+  - ELB : オンプレからのリフトアンドシフト
