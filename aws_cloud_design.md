@@ -42,3 +42,4 @@
   - API Gateway : REST APIやWebSocket
   - AppSync : GraphQL
   - ELB : オンプレからのリフトアンドシフト
+- API Gatewayでは、バージョニング紀伊脳を使って、複数バージョンを並列稼働させることができる
