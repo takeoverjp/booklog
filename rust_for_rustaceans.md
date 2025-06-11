@@ -13,5 +13,20 @@
 - borrow checkerは単純にブロックスコープで見ているのではなく、実際に参照を使う範囲を見ている
 - generic lifetimeを使う場合、dropを実装したらそこまで参照が有効でならなければならなくなる
 - generic lifetimeは基本一つまでにしておく
-- 
+
+## 3. Designing interfaces
+
+- API設計の原則
+  - unsurprised
+  - flexible
+  - obvious
+  - constrained
+- リソース
+  - [Rust API Guidelines](https://
+rust-lang.github.io/api-guidelines/)
+  - [Rust RFC 
+1105](https://rust-lang.github.io/rfcs/1105-api-evolution.html)
+  - [the chapter 
+of The Cargo Book on SemVer compatibility](https://doc.rust-lang.org/cargo/­
+reference/semver.html)
 
