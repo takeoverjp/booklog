@@ -30,3 +30,12 @@ rust-lang.github.io/api-guidelines/)
 of The Cargo Book on SemVer compatibility](https://doc.rust-lang.org/cargo/­
 reference/semver.html)
 
+### Unsurprised
+
+- 自分で定義留守方には、下記の順で、できる限りトレイトを実装する
+  - `std::fmt::Debug`
+  - `std::marker::Sync`, `std::marker::Send`
+    - もし何らかの理由でマークすべきでないのであれば、その理由をコメントで明記する
+  - `std::clone::Clone`, `std::default::Default`
+  - `std::cmp::PartialEq`, `std::cmp::PartialOrd`, `std::hash::Hash`, `std::cmp::Eq`, `std::cmp::Ord`
+  - `serde::Serialize`, `serde::Deserialize` (標準ライブラリではないので、必要に応じて)
