@@ -39,3 +39,6 @@ reference/semver.html)
   - `std::clone::Clone`, `std::default::Default`
   - `std::cmp::PartialEq`, `std::cmp::PartialOrd`, `std::hash::Hash`, `std::cmp::Eq`, `std::cmp::Ord`
   - `serde::Serialize`, `serde::Deserialize` (標準ライブラリではないので、必要に応じて)
+
+- Rustのトレイトは、`Bar`がトレイトを実装していても、デフォルトでは`&Bar`にトレイトを自動実装しない
+  - そのため、独自でトレイトを定義する場合は、`&T where T: Trait`, `&mut T where T: Trait`, `Box<T> where T: Trait`として空実装しておくのが通常望ましい
