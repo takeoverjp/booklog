@@ -42,3 +42,9 @@ reference/semver.html)
 
 - Rustのトレイトは、`Bar`がトレイトを実装していても、デフォルトでは`&Bar`にトレイトを自動実装しない
   - そのため、独自でトレイトを定義する場合は、`&T where T: Trait`, `&mut T where T: Trait`, `Box<T> where T: Trait`として空実装しておくのが通常望ましい
+
+- wrapper型を定義する場合は、以下のトレイトの実装を検討する
+  - `Deref`: `.`で中身のメソッドを呼び出せるようにする
+  - `AsRef`: `&`で中身の参照を取得できるようにする
+  - `From<InnerType>`, `Into<InnerType>`: `InnerType`との相互変換を容易にする
+  - `Borrow`: `HashMap`などのコレクションで、`InnerType`と`OuterType`をキーとして等価に使えるようにする。本質的に同じであるときだけ提供する（例：`String`と`str`）
