@@ -48,3 +48,8 @@ reference/semver.html)
   - `AsRef`: `&`で中身の参照を取得できるようにする
   - `From<InnerType>`, `Into<InnerType>`: `InnerType`との相互変換を容易にする
   - `Borrow`: `HashMap`などのコレクションで、`InnerType`と`OuterType`をキーとして等価に使えるようにする。本質的に同じであるときだけ提供する（例：`String`と`str`）
+
+- 参照か所有か
+  - 内部の処理でスレッドに渡すなど所有権が必要になるなら所有
+  - 所有権が不要かつコピーが軽量でなければ、参照
+  - 参照か所有かが実行時に決まる場合は、Cowがつかえる
