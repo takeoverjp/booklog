@@ -117,3 +117,7 @@ reference/semver.html)
 - メジャーバージョンが変わると別の型だと見なされる理由は複雑だが、一つの例としてCopyマーカートレイトがある
 - semver trickでメジャーバージョンアップの影響を緩和できる
 
+#### Auto-Traits
+
+- `Send`や`Sync`などの自動トレイトは、privateなメンバが`Send`や`Sync`でなくなった場合に、型が`Send`や`Sync`でなくなり、braking changeとなる
+- `fn is_normal<T: Sized + Send + Sync + Unpin>() {}`のようなテストコードを実装しておくことで、リリース前にチェックできる
