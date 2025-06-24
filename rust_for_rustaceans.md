@@ -121,3 +121,11 @@ reference/semver.html)
 
 - `Send`や`Sync`などの自動トレイトは、privateなメンバが`Send`や`Sync`でなくなった場合に、型が`Send`や`Sync`でなくなり、braking changeとなる
 - `fn is_normal<T: Sized + Send + Sync + Unpin>() {}`のようなテストコードを実装しておくことで、リリース前にチェックできる
+
+## 4. Error Handling
+
+- Rustにおけるエラー処理の方法は、まだ統一的な方法が確立されていない
+
+### Representing Errors
+
+- エラーの表現方法には、API利用者がエラー要因を区別できるenumerationと、単一のopaque errorだけを返すerasureがある
