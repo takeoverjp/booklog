@@ -1,0 +1,8 @@
+#!/bin/bash -exu
+#MISE description="要約する"
+#MISE alias="s"
+
+TARGET_DOCUMENT="$1"
+TARGET_SECTION="$2"
+
+gemini -p "@${TARGET_DOCUMENT} ${TARGET_SECTION}章を要約して"

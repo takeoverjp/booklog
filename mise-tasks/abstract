@@ -1,5 +1,0 @@
-#!/bin/bash -exu
-
-TARGET_SECTION="$1"
-
-gemini -p "@books/BPF\ Performance\ Tools.pdf ${TARGET_SECTION}章を要約して"
