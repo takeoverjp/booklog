@@ -370,6 +370,19 @@ Flame Graphとは、プロファイリングされたスタックトレースを
 
 ### 2.6 Event Sources
 
+- 動的インストルメンテーション (Dynamic Instrumentation)
+    - kprobes: カーネル空間のほぼ全ての関数に動的にアタッチできる。
+    - uprobes: ユーザー空間のアプリケーションやライブラリの関数に動的にアタッチできる。
+- 静的インストルメンテーション (Static Instrumentation / Tracepoints)
+    - カーネル開発者によってコード内に意図的に配置された、安定したトレースポイント。
+    - syscalls（システムコール）、sched（スケジューラ）、tcp、block（ブロックI/O）など、様々なサブシステムに存在する。
+- ハードウェアイベント (Hardware Events / PMCs)
+    - CPUのパフォーマンスモニタリングカウンタ（PMC）を利用する。
+    - cycles（サイクル数）、instructions（命令数）、キャッシュミスなど、プロセッサレベルのイベントを計測できる。
+- ソフトウェアイベント (Software Events)
+    - カーネルによって定義されたソフトウェアベースのイベント。
+    - CPUクロック、コンテキストスイッチ、ページフォルト、CPUマイグレーションなどが含まれる。
+
 ### 2.7 kprobes
 
 ### 2.8 uprobes
